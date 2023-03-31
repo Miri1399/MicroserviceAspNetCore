@@ -1,4 +1,7 @@
 using Discount.Grpc.Services;
+using AutoMapper;
+using Discount.Grpc.Repositories.Interfaces;
+using Discount.Grpc.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -7,6 +10,8 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddGrpc();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddScoped<IDiscountRepository, DiscountRepository>();
 
 var app = builder.Build();
 
